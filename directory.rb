@@ -1,4 +1,4 @@
-#let's put all students into an array
+# all students in the array
 students = [
   "Dr. Hannibal Lecter",
   "Darth Vader",
@@ -13,13 +13,23 @@ students = [
   "Norman Bates"
 ]
 
-puts "The students of Villains Academy"
-puts "-------------"
-#puts students[0..10]
-#array iteration to print the list of all students
-students.each do |student|
-  puts student
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
 end
 
-#using the array's count() method to count students
-print "Overall, we have #{students.count} great students"
+def print(names)
+  names.each do |name|
+    puts name
+  end
+end
+
+def print_footer(names)
+  puts "Overall, we have #{names.count} great students"
+end
+
+print_header
+#passing the students variable to the methods as an argument
+#the methods don't have access to local variables defined outside them.
+print(students)
+print_footer(students)
