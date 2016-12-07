@@ -1,7 +1,3 @@
-#Right now if we have only one student, the user will see a message "Now we have 1 students",
-#whereas it should be "Now we have 1 student".
-#How can you fix it so that it used singular form when appropriate and plural form otherwise?
-
 def get_user_input
   properties = {}
   puts "ENTERING get_user_input"
@@ -74,7 +70,7 @@ def print(students)
       index += 1
     end
   else
-    puts 'Please make sure to enter the name of the student'
+    puts 'Please make sure to enter the student'
   end
 
 end

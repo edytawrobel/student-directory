@@ -1,10 +1,36 @@
+def interactive_menu
+  students = []
+  loop do
+  # 1. print the menu and ask the user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+  # 2. read the input and save it into a variable
+  selection = gets.chomp
+  # 3. do what the user has asked
+    case selection
+    when "1"
+      students = input_students
+    when "2"
+      print_header
+      print(students)
+      print_footer(students)
+    when "9"
+      exit  # this will cause the program to terminate
+    else
+      puts "I don't know what you meant, try again"
+    end
+  end
+  # 4. repeat from step 1 - loop
+end
+
 def get_user_input
   properties = {}
   puts "ENTERING get_user_input"
 
   # Name
   puts "Please enter the name of the student"
-  properties[:name] = gets.chomp
+  properties[:name] = gets.slice(0..-2)
 
   # Cohort
   puts "Please enter the cohort of the student"
@@ -25,28 +51,30 @@ end
 def input_students
   students = []
   properties = get_user_input()
-  grouped = {} # grouped is used for the sorting of cohorts
+  grouped = {}
 
-  # while the name is not empty, repeat this code
   index = 0
   while !properties[:name].empty? do
-    # validate(properties)
     students << properties
 
-    # Group students by cohorts
-    #if cohort does not exist
     if (!grouped[students[index][:cohort]])
-      #create cohort and add it onto array
       grouped[students[index][:cohort]] = [].push(students[index])
     else
-      #if it does exist, push it into array
       grouped[students[index][:cohort]].push(students[index])
     end
     puts '----------------'
-    puts "We have #{grouped.count} groups"
-    puts "Now we have #{students.count} students"
+    # (students.count == 1) ? puts "Now we have #{students.count} student" : puts "Now we have #{students.count} students"
+
+    if students.count == 1 && grouped.count == 1
+      puts "Now we have #{students.count} student"
+      puts "We have #{grouped.count} group"
+    else
+      puts "Now we have #{students.count} students"
+      puts "We have #{grouped.count} groups"
+    end
+
     puts '----------------'
-    # get another name from the user
+
     properties = get_user_input()
     index += 1
   end
@@ -61,11 +89,16 @@ end
 
 def print(students)
   index = 0
-  while students.length > index
-    student = students[index]
-    puts "#{student[:name]}; #{student[:cohort]}; #{student[:country]}"
-    index += 1
+  if students.length > 0
+    while students.length > index
+      student = students[index]
+      puts "#{student[:name]}; #{student[:cohort]}; #{student[:country]}"
+      index += 1
+    end
+  else
+    puts 'Please make sure to enter the student'
   end
+
 end
 
 
@@ -74,7 +107,7 @@ def print_footer(names)
 end
 
 # Assign the result from input_students to names
-names = input_students
+names = interactive_menu
 puts 'RESULT FROM names: ', names
 #nothing happens until we call the methods
 print_header()

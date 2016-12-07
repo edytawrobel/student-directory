@@ -1,0 +1,61 @@
+elements = [
+  {
+    :name=>"Velizar",
+    :cohort=>"january",
+    :country=>"q"
+  },
+  {
+    :name=>"Edyta",
+    :cohort=>"january",
+    :country=>"q"
+  },
+  {
+    :name=>"Edyta",
+    :cohort=>"february",
+    :country=>"as"
+  },
+  {
+    :name=>"Ivan",
+    :cohort=>"february",
+    :country=>"as"
+  },
+  {
+    :name=>"Gusti",
+    :cohort=>"february",
+    :country=>"as"
+  }
+]
+
+grouped = {}
+index = 0
+while elements.length > index
+  puts '----------------'
+  puts elements[index]
+  puts elements[index][:cohort]
+  puts '----------------'
+
+  if (!grouped[elements[index][:cohort]])
+    puts 'in if'
+    grouped[elements[index][:cohort]] = [].push(elements[index])
+  else
+    grouped[elements[index][:cohort]].push(elements[index])
+  end
+
+  index += 1
+end
+
+puts 'GROUPED: ', grouped["february"]
+
+
+# grouped = {
+#   january: [
+#     {},
+#     {},
+#     {}
+#   ],
+#   fubruary: [
+#   {},
+#   {},
+#   {}
+#   ]
+# }
