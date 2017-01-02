@@ -30,7 +30,7 @@ def print(students)
   index = 0
   while students.length > index
     student = students[index]
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
     index += 1
   end
 end
